@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitravia Admin | Dashboard</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="ambient-light.css">
+</head>
+
+<body>
+    <!-- Backgrounds & Lights -->
+    <div class="hero-bg static-bg"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-size: cover; background-position: center;">
+    </div>
+    <script>
+        // Critical Theme Loader to prevent FOUC
+        (function () {
+            const heroBg = document.querySelector('.hero-bg');
+            const storedIndex = sessionStorage.getItem('chitravia_theme_index');
+
+            // Check if THEMES is available (from config.js)
+            if (typeof THEMES !== 'undefined' && heroBg && storedIndex !== null) {
+                const selected = THEMES[parseInt(storedIndex)];
+                if (selected) {
+                    // Apply immediately
+                    heroBg.style.backgroundImage = `url('${selected.url}')`;
+                    document.documentElement.style.setProperty('--accent-color', selected.color);
+
+                    // Calc glow
+                    const hex = selected.color.replace('#', '');
+                    const r = parseInt(hex.substring(0, 2), 16);
+                    const g = parseInt(hex.substring(2, 4), 16);
+                    const b = parseInt(hex.substring(4, 6), 16);
+                    document.documentElement.style.setProperty('--accent-glow', `rgba(${r}, ${g}, ${b}, 0.15)`);
+                }
+            }
+        })();
+    </script>
+    <div class="ambient-light"></div>
+
+    <!-- Login Container -->
+    <div id="login-container">
+        <div class="login-box">
+            <h2>Chitravia Admin</h2>
+            <p>Sign in to manage your website</p>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" id="login-btn">Sign In</button>
+            </form>
+            <p id="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Hidden by default) -->
+    <div id="dashboard-container" style="display: none;">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h3>Chitravia</h3>
+                <p>Admin Panel</p>
+            </div>
+            <ul class="menu">
+                <li class="active" onclick="switchTab('overview')"><i class="fas fa-chart-pie"></i> Overview</li>
+                <li onclick="switchTab('portfolio')"><i class="fas fa-images"></i> Manage Work</li>
+                <li onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <!-- Overview Section -->
+            <section id="overview" class="tab-content active">
+                <header>
+                    <h1>Dashboard Overview</h1>
+                    <div class="user-info">Logged in as <span id="user-email"></span></div>
+                </header>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon"><i class="fas fa-project-diagram"></i></div>
+                        <div class="info">
+                            <h3>Total Projects</h3>
+                            <p id="total-projects">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="tab-content">
+                <header>
+                    <h1>Manage Portfolio</h1>
+                    <button class="btn-add" onclick="openModal()"><i class="fas fa-plus"></i> Add New Project</button>
+                </header>
+
+                <!-- Project Grid -->
+                <div id="admin-portfolio-grid" class="admin-portfolio-grid">
+                    <!-- Dynamic Projects will appear here -->
+                    <p>Loading projects...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Add New Project</h2>
+            <form id="project-form">
+                <input type="hidden" id="project-id">
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input type="text" id="p-title" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="p-desc" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Project Images (Select multiple)</label>
+                    <input type="file" id="p-image-file" accept="image/*" multiple>
+                    <div id="upload-status" class="status-msg"></div>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="p-category">
+                        <option value="featured">Featured Work</option>
+                        <option value="minimalist">Minimalist Line Art</option>
+                        <option value="abstract">Abstract Art</option>
+                        <option value="geometric">Geometric Art</option>
+                        <option value="nature">Nature-Inspired</option>
+                        <option value="calligraphy">Calligraphy</option>
+                        <option value="texture">Texture Art</option>
+                        <option value="mandala">Mandala</option>
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Save Project</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

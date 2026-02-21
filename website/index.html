@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitravia Studio | Digital Art & Impressions</title>
+    <meta name="description"
+        content="Chitravia Studio specializes in premium digital art, murals, and bespoke installations. We bridge the gap between imagination and reality.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Supabase & Config -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ambient-light.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Ambient Scroll Lighting -->
+    <div class="ambient-light">
+        <div class="light-streak"></div>
+    </div>
+
+    <!-- Hero Background (Fixed) -->
+    <div class="hero-bg"></div>
+
+    <!-- Cursor Glow Element -->
+    <div class="cursor-glow"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <!-- SVG Logo Animation could go here -->
+            <svg class="loader-circle" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45"></circle>
+            </svg>
+            <div class="loader-logo"
+                style="width: 100%; text-align: center; color: white; font-family: 'Playfair Display';">CS</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <a href="#">CHITRAVIA STUDIO</a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="projects.html">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li class="mobile-only"><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <a href="#contact" class="btn btn-outline header-cta">Contact</a>
+
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <!-- hero-bg moved to body -->
+            <div class="hero-content">
+                <h1 class="display-text">Where Art Meets <br><span class="text-gold"
+                        style="font-style: italic;">Architecture</span></h1>
+                <p>Digital Art • Murals • Installations • Bespoke Creations</p>
+                <div class="hero-buttons">
+                    <a href="projects.html" class="btn btn-primary">View Portfolio</a>
+                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span
+                    style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5);">Scroll</span>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="section-header">
+                <h2>Artistic Services</h2>
+                <p>We transform spaces with tailored artistic expressions, from digital concepts to physical reality.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-paint-brush service-icon"></i>
+                    <h3>Mural Art</h3>
+                    <p>Large-scale storytelling on walls that redefine the ambiance of any room.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-cube service-icon"></i>
+                    <h3>Installations</h3>
+                    <p>3D artistic structures that serve as the focal point of architectural spaces.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-layer-group service-icon"></i>
+                    <h3>Digital Art</h3>
+                    <p>High-resolution digital creations for NFTs, prints, or projection mapping.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-pen-nib service-icon"></i>
+                    <h3>Custom Calligraphy</h3>
+                    <p>Bespoke lettering and typography art for branding and interiors.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-image service-icon"></i>
+                    <h3>Fine Art</h3>
+                    <p>Traditional canvas paintings with a modern, contemporary twist.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-lightbulb service-icon"></i>
+                    <h3>Concept Design</h3>
+                    <p>Visualizing artistic directions for commercial and residential projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries / Tags -->
+        <section id="industries" class="industries">
+            <div class="section-header">
+                <h2 style="font-size: 2rem;">Industries We Serve</h2>
+            </div>
+            <div class="industry-list">
+                <span class="industry-tag">Residential</span>
+                <span class="industry-tag">Hospitality</span>
+                <span class="industry-tag">Corporate</span>
+                <span class="industry-tag">Public Spaces</span>
+                <span class="industry-tag">Retail</span>
+                <span class="industry-tag">Educational</span>
+                <span class="industry-tag">Healthcare</span>
+                <span class="industry-tag">Events</span>
+            </div>
+        </section>
+
+        <!-- Portfolio Teaser (Featured) -->
+        <section id="portfolio" class="portfolio">
+            <div class="section-header">
+                <h2>Featured Works</h2>
+                <p>A glimpse into our curated collection of masterpieces.</p>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Static placeholders until JS loads text -->
+                <!-- These will be replaced or augmented by JS -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1573521193826-58c7dc2e13e3?auto=format&fit=crop&q=80"
+                        alt="Mural Art">
+                    <div class="portfolio-overlay">
+                        <h3>Abstract Mural</h3>
+                        <span class="text-gold">Residential</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&q=80"
+                        alt="Sculpture">
+                    <div class="portfolio-overlay">
+                        <h3>Geometric Installation</h3>
+                        <span class="text-gold">Corporate</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&q=80"
+                        alt="Digital Art">
+                    <div class="portfolio-overlay">
+                        <h3>Neon Visions</h3>
+                        <span class="text-gold">Digital</span>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-container">
+                <a href="projects.html" class="btn btn-outline">View All Projects</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" style="background-color: var(--surface-color); padding: 100px 5%;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; max-width: 1200px; margin: 0 auto;">
+                <div style="flex: 1; min-width: 300px; padding-right: 50px;">
+                    <h2 style="font-size: 3rem; margin-bottom: 30px;">The Studio</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.1rem;">
+                        Chitravia Studio is a collective of visionary artists and designers dedicated to pushing the
+                        boundaries of visual expression.
+                    </p>
+                    <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.1rem;">
+                        We believe that art is not just decoration, but an integral part of architecture and human
+                        experience.
+                        Our mission is to create immersive environments that tell a unique story.
+                    </p>
+                    <div style="margin-top: 40px;">
+                        <div style="display: flex; gap: 40px;">
+                            <div>
+                                <h3 class="text-gold" style="font-size: 2.5rem;">50+</h3>
+                                <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Projects
+                                </p>
+                            </div>
+                            <div>
+                                <h3 class="text-gold" style="font-size: 2.5rem;">15+</h3>
+                                <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Awards</p>
+                            </div>
+                            <div>
+                                <h3 class="text-gold" style="font-size: 2.5rem;">100%</h3>
+                                <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Passion
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    style="flex: 1; min-width: 300px; height: 500px; background: url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80') center/cover; opacity: 0.8; border-radius: 5px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="section-header">
+                <h2>Let's Collaborate</h2>
+                <p>Have a vision? We'd love to hear about it.</p>
+            </div>
+            <div class="contact-container">
+                <form class="contact-form">
+                    <div class="form-row">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" placeholder="Phone Number">
+                        <!-- Custom Select Dropdown -->
+                        <div class="custom-select-wrapper">
+                            <input type="hidden" id="project-type-input" value="">
+                            <div class="custom-select">
+                                <div class="custom-select__trigger">
+                                    <span>Project Type</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="custom-options">
+                                    <span class="custom-option selected" data-value="">Project Type</span>
+                                    <span class="custom-option" data-value="mural">Mural Art</span>
+                                    <span class="custom-option" data-value="installation">Installation</span>
+                                    <span class="custom-option" data-value="digital">Digital Art</span>
+                                    <span class="custom-option" data-value="residential">Residential Project</span>
+                                    <span class="custom-option" data-value="commercial">Commercial Project</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <textarea placeholder="Tell us about your project or idea..." rows="4"></textarea>
+                    <button type="submit" class="btn btn-primary" style="justify-self: center; width: 200px;">Send
+                        Message</button>
+                </form>
+
+                <div
+                    style="margin-top: 60px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; text-align: center;">
+                    <div>
+                        <i class="fas fa-envelope text-gold" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
+                        <p>hello@chitraviastudio.com</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone text-gold" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
+                        <p>+91 98765 43210</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt text-gold" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
+                        <p>Mumbai, India</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-behance"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Chitravia Studio. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Inline scroll listener for header (if not in script.js)
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

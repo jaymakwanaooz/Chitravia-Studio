@@ -1,0 +1,27 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+
+# IDEs
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project Specific
+notes.txt
+extracted_requirements.txt
+chitstd.pdf
+chitstd.jpg
+extract_pdf.py
+*.log
+
+# Sensitive Info (Optional - see note below)
+# config.js
