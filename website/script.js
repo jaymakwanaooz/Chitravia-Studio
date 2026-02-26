@@ -161,9 +161,8 @@ function setRandomHeroBackground() {
 
     // Detect Page Type
     const path = window.location.pathname;
-    // Simple check: if path ends with .html but NOT index.html, it's an internal page.
-    // Or if it contains 'projects' or 'admin'.
-    const isInternalPage = path.includes('projects.html') || path.includes('admin.html');
+    // Clean URL compatible check: anything other than root or index.html is internal
+    const isInternalPage = !(path === '/' || path === '/index.html' || path === '');
 
     let themeIndex;
 
