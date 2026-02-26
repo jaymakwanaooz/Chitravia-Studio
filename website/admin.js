@@ -24,6 +24,7 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
         userEmailEl.textContent = currentUser.email;
         showDashboard();
         fetchProjects();
+        fetchLeads();
     } else {
         showLogin();
     }
@@ -71,6 +72,52 @@ async function fetchProjects() {
 
     totalProjectsEl.textContent = projects.length;
     renderProjects(projects);
+}
+
+// Fetch Leads
+async function fetchLeads() {
+    const leadsBody = document.getElementById('leads-table-body');
+    if (!leadsBody) return;
+
+    leadsBody.innerHTML = '<tr><td colspan="6">Loading leads...</td></tr>';
+
+    const { data: leads, error } = await supabaseClient
+        .from('leads')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching leads:', error);
+        leadsBody.innerHTML = '<tr><td colspan="6">Error loading leads. Check console.</td></tr>';
+        return;
+    }
+
+    renderLeads(leads);
+}
+
+function renderLeads(leads) {
+    const leadsBody = document.getElementById('leads-table-body');
+    if (!leadsBody) return;
+    leadsBody.innerHTML = '';
+
+    if (!leads || leads.length === 0) {
+        leadsBody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-secondary);">No leads or requests found.</td></tr>';
+        return;
+    }
+
+    leads.forEach(lead => {
+        const tr = document.createElement('tr');
+        const dateStr = new Date(lead.created_at).toLocaleString();
+        tr.innerHTML = `
+            <td style="white-space: nowrap;">${dateStr}</td>
+            <td>${lead.name || '-'}</td>
+            <td><a href="mailto:${lead.email}" style="color:var(--accent-color);">${lead.email || '-'}</a></td>
+            <td>${lead.phone || '-'}</td>
+            <td style="text-transform: capitalize;">${lead.project_type || '-'}</td>
+            <td style="max-width: 300px;">${lead.message || '-'}</td>
+        `;
+        leadsBody.appendChild(tr);
+    });
 }
 
 // Listing Projects

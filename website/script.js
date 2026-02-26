@@ -496,3 +496,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Contact Form Submission
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm && typeof supabaseClient !== 'undefined') {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nameEl = document.getElementById('contact-name');
+            const emailEl = document.getElementById('contact-email');
+            const phoneEl = document.getElementById('contact-phone');
+            const typeEl = document.getElementById('project-type-input');
+            const messageEl = document.getElementById('contact-message');
+            const submitBtn = document.getElementById('contact-submit-btn');
+            const statusMsg = document.getElementById('contact-status-msg');
+
+            if (!nameEl || !emailEl || !messageEl || !submitBtn || !statusMsg) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            statusMsg.textContent = '';
+
+            try {
+                const { error } = await supabaseClient
+                    .from('leads')
+                    .insert([{
+                        name: nameEl.value,
+                        email: emailEl.value,
+                        phone: phoneEl ? phoneEl.value : '',
+                        project_type: typeEl ? typeEl.value : '',
+                        message: messageEl.value
+                    }]);
+
+                if (error) throw error;
+
+                statusMsg.textContent = 'Message sent successfully! We will get back to you soon.';
+                statusMsg.style.color = '#4CAF50';
+                contactForm.reset();
+
+                // reset custom select
+                const customSelectTrigger = document.querySelector('.custom-select__trigger span');
+                if (customSelectTrigger) customSelectTrigger.textContent = 'Project Type';
+                const customOptions = document.querySelectorAll('.custom-option');
+                customOptions.forEach(opt => opt.classList.remove('selected'));
+                if (customOptions.length > 0) customOptions[0].classList.add('selected');
+                if (typeEl) typeEl.value = '';
+
+            } catch (err) {
+                console.error('Error submitting form:', err);
+                statusMsg.textContent = 'Failed to send message. Please try again later.';
+                statusMsg.style.color = '#F44336';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+    }
+});

@@ -72,6 +72,7 @@
             <ul class="menu">
                 <li class="active" onclick="switchTab('overview')"><i class="fas fa-chart-pie"></i> Overview</li>
                 <li onclick="switchTab('portfolio')"><i class="fas fa-images"></i> Manage Work</li>
+                <li onclick="switchTab('leads')"><i class="fas fa-envelope"></i> Leads & Requests</li>
                 <li onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</li>
             </ul>
         </nav>
@@ -107,6 +108,33 @@
                 <div id="admin-portfolio-grid" class="admin-portfolio-grid">
                     <!-- Dynamic Projects will appear here -->
                     <p>Loading projects...</p>
+                </div>
+            </section>
+
+            <!-- Leads Section -->
+            <section id="leads" class="tab-content">
+                <header>
+                    <h1>Leads & Requests</h1>
+                </header>
+
+                <div class="leads-container" style="overflow-x: auto;">
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Type</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leads-table-body">
+                            <tr>
+                                <td colspan="6">Loading leads...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </main>

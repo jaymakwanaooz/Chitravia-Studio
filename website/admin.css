@@ -481,3 +481,44 @@ header h1 {
     outline: none;
     border-color: var(--accent-color);
 }
+
+/* Leads Table */
+.leads-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.leads-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(30, 30, 30, 0.4);
+}
+
+.leads-table th,
+.leads-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.leads-table th {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.leads-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.leads-table td {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    vertical-align: top;
+}

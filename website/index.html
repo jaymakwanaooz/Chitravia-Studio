@@ -241,11 +241,11 @@
             <div class="contact-container">
                 <form class="contact-form">
                     <div class="form-row">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" id="contact-name" placeholder="Your Name" required>
+                        <input type="email" id="contact-email" placeholder="Your Email" required>
                     </div>
                     <div class="form-row">
-                        <input type="text" placeholder="Phone Number">
+                        <input type="text" id="contact-phone" placeholder="Phone Number">
                         <!-- Custom Select Dropdown -->
                         <div class="custom-select-wrapper">
                             <input type="hidden" id="project-type-input" value="">
@@ -265,9 +265,12 @@
                             </div>
                         </div>
                     </div>
-                    <textarea placeholder="Tell us about your project or idea..." rows="4"></textarea>
-                    <button type="submit" class="btn btn-primary" style="justify-self: center; width: 200px;">Send
+                    <textarea id="contact-message" placeholder="Tell us about your project or idea..." rows="4"
+                        required></textarea>
+                    <button type="submit" id="contact-submit-btn" class="btn btn-primary"
+                        style="justify-self: center; width: 200px;">Send
                         Message</button>
+                    <p id="contact-status-msg" style="text-align: center; margin-top: 15px; grid-column: 1 / -1;"></p>
                 </form>
 
                 <div
